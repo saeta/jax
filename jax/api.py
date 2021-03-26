@@ -251,10 +251,6 @@ def _python_jit(
   return f_jitted
 
 
-class _BackendAndDeviceInfo(NamedTuple):
-  default_device: xc.Device
-  committed_to_device: bool
-
 def _nan_check_posthook(fun, args, kwargs, output):
   """Hook function called by the C++ jit to perform NaN checking."""
   try:
@@ -269,7 +265,6 @@ def _nan_check_posthook(fun, args, kwargs, output):
     print("Invalid nan value encountered in the output of a C++-jit "
           "function. Calling the de-optimized version.")
     fun._cache_miss(*args, **kwargs)[0]  # probably won't return
-
 
 def _cpp_jit(
     fun: F,
@@ -371,7 +366,7 @@ def _cpp_jit(
       backend_ = xb.get_backend(backend)
       default_device = backend_.get_default_device_assignment(1)[0]
 
-    return _BackendAndDeviceInfo(default_device, committed_to_device)
+    return xla.BackendAndDeviceInfo(default_device, committed_to_device)
 
   # TODO(phawkins): Remove this branch when jaxlib 0.1.65 is the minimum
   # version.
