@@ -561,7 +561,7 @@ Finally, we add a transformation API to kick off the trace:
 ```{code-cell}
 def jvp_v1(f, primals, tangents):
   with new_main(JVPTrace) as main:
-    trace = JVPTrace(main)
+    trace = JVPTrace(main)  # ??? Isn't it already JVPTrace?
     tracers_in = [JVPTracer(trace, x, t) for x, t in zip(primals, tangents)]
     out = f(*tracers_in)
     tracer_out = full_raise(trace, out)
