@@ -243,6 +243,8 @@ class Tracer:
 def swap(f): return lambda x, y: f(y, x)
 ```
 
+The following are `AbstractValue`s:
+
 ```{code-cell}
 class ShapedArray:
   array_abstraction_level = 1
