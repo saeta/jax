@@ -507,7 +507,7 @@ class JVPTrace(Trace):
 jvp_rules = {}
 ```
 
-Notice both `lift` and `sublift` package a value into a `JVPTracer` with the
+Notice both `lift` and `pure` package a value into a `JVPTracer` with the
 minimal amount of context, which is a zero tangent value.
 
 Let's add some JVP rules for primitives:
