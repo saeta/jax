@@ -946,7 +946,7 @@ carry a little bit of extra context, for both `jit` and `vjp` we need much
 richer context: we need to represent _programs_. That is, we need jaxprs!
 
 Jaxprs are JAX's internal intermediate representation of programs. They are
-explicitly typed, functional, first-order, and in ANF form. We need a
+explicitly typed, functional, first-order, and in ANF. We need a
 program representation for `jit` because the purpose of `jit` is to stage
 computation out of Python. For any computation we want to stage out, we need
 to be able to represent it as data, and build it up as we trace a Python
